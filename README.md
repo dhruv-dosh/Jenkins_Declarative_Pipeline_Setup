@@ -12,7 +12,7 @@ Ensure you have the following installed and configured on Instance:
 - **Docker Hub (If used in project)**
 - **Jenkins**
 
-Refer to the installation guide: [Java_Jenkins_Docker_Setup_Cloud](https://github.com/Abhishek-2502/Java_Jenkins_Docker_Setup_Cloud)
+Refer to the installation guide: [Java_Jenkins_Docker_Setup_Cloud](https://github.com/dhruv-dosh/Java_Jenkins_Docker_Setup_Cloud)
 
 ---
 
@@ -21,7 +21,7 @@ Refer to the installation guide: [Java_Jenkins_Docker_Setup_Cloud](https://githu
 1. Open Jenkins at `http://your_public_ip:8080`
 2. Click **New Item**
 3. Select **Pipeline**
-4. Enter project name (e.g., `django-notes-app`)
+4. Enter project name 
 5. Click **OK**
 
 ---
@@ -54,7 +54,7 @@ Refer to the installation guide: [Java_Jenkins_Docker_Setup_Cloud](https://githu
    - **Scope**: Global (Jenkins, nodes, items, all child items, etc.)
    - **ID**: `dockerHub`
    - **Description**: This is DockerHub credentials.
-   - **Username**: DockerHub Username (e.g., `abhi25022004`)
+   - **Username**: DockerHub Username 
    - **Password**: DockerHub Password
 5. Click **OK**
 
@@ -71,9 +71,21 @@ For accessing the Django Notes App, open port **8000**:
 
 ## 5. Automate Build with Webhooks
 
-Refer to **Step 10** of the guide: [Node_Todo_App_Docker_Jenkins_FreeStyle](https://github.com/Abhishek-2502/Node_Todo_App_Docker_Jenkins_FreeStyle)
+1. Install **GitHub Integration Plugin** in Jenkins from **Manage Jenkins → Plugins → Available Plugins**.
+2. Select **restart Jenkins when installation is complete and no jobs are running**.
+3. Go to **GitHub Repo → Settings → Webhooks → Add Webhook**.
+4. Set Payload URL: `http://your_jenkins_master_public_ip:8080/github-webhook/`.
+5. Content Type: `application/json`.
+6. Select **Just the push event**.
+7. Leave secret field empty and other fields as it is.
+8. Save and verify webhook with a green tick.
+9. In **Jenkins → Project → Configure**:
+   - Select **GitHub hook trigger for GITScm polling** under **Triggers**.
 
----
+Now, any code push to GitHub will trigger an automatic build and deployment via Jenkins. If doesn't work then build manually from jenkins for one time.
+
+#### NOTE: your_public_ip changes when you stop the instance. So update Payload URL accordingly
+
 
 ## 6. Running the Pipeline & Verifying the Deployment
 
@@ -89,6 +101,6 @@ Refer to **Step 10** of the guide: [Node_Todo_App_Docker_Jenkins_FreeStyle](http
 ### You have successfully set up a Jenkins declarative pipeline for a Django Notes App!
 
 ## Author
-Abhishek Rajput
+Dhruv Doshi
 
 
