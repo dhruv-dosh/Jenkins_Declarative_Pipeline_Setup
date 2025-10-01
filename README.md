@@ -1,6 +1,6 @@
 # Jenkins Declarative Pipeline Setup
 
-This guide provides step-by-step instructions for setting up a Jenkins declarative pipeline to automate the build and deployment using Docker and Jenkins.
+This guide provides step-by-step instructions for setting up a Jenkins declarative pipeline to automate the build and deploy using Docker and Jenkins.
 
 ---
 
